@@ -2,7 +2,7 @@ import 'package:fluro/fluro.dart';
 
 import '../screens/home.dart';
 import '../screens/password_reset.dart';
-import '../screens/email_verification.dart';
+import '../screens/email_verification/email_verification.dart';
 
 class MyFluroRouter {
   static final FluroRouter fluroRouter = FluroRouter();
