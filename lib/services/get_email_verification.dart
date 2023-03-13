@@ -6,9 +6,8 @@ import '../models/base_response.dart';
 // Calls the email verification endpoint. Return a BaseResponse response.
 Future<BaseResponse> verifyEmailSvc(String emailVerificationToken) async {
   Map<String, String> headers = {
-    'Accept': '*/*',
+    'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
   };
 
   final queryParameter = {'token': emailVerificationToken};
