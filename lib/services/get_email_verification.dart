@@ -12,7 +12,7 @@ Future<BaseResponse> verifyEmailSvc(String emailVerificationToken) async {
 
   final queryParameter = {'token': emailVerificationToken};
 
-  var uri = Uri.http(
+  var uri = Uri.https(
       'open-days-thesis.herokuapp.com', 'open-days/users/email-verification', queryParameter);
 
   final rawResponse = await http
