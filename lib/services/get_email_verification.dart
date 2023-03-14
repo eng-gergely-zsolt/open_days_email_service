@@ -10,17 +10,14 @@ Future<BaseResponse> verifyEmailSvc(String emailVerificationToken) async {
     'Content-Type': 'application/json',
   };
 
-  // final queryParameter = {'token': emailVerificationToken};
+  final queryParameter = {'token': emailVerificationToken};
 
-  String uri =
-      'https://cors-anywhere.herokuapp.com/https://open-days-thesis.herokuapp.com/open-days/users/email-verification?token=$emailVerificationToken';
-
-  // var uri = Uri.http(
-  //     'open-days-thesis.herokuapp.com', 'open-days/users/email-verification', queryParameter);
+  var uri = Uri.http(
+      'open-days-thesis.herokuapp.com', 'open-days/users/email-verification', queryParameter);
 
   final rawResponse = await http
       .get(
-        Uri.parse(uri),
+        uri,
         headers: headers,
       )
       .timeout(const Duration(seconds: 5));
