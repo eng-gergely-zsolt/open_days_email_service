@@ -12,7 +12,7 @@ Future<BaseResponse> verifyEmailSvc(String emailVerificationToken) async {
 
   final queryParameter = {'token': emailVerificationToken};
 
-  var uri = Uri.https(
+  var uri = Uri.http(
       'open-days-thesis.herokuapp.com', 'open-days/users/email-verification', queryParameter);
 
   final rawResponse = await http
@@ -22,7 +22,19 @@ Future<BaseResponse> verifyEmailSvc(String emailVerificationToken) async {
       )
       .timeout(const Duration(seconds: 5));
 
-  Map<String, dynamic> parsedResponse = jsonDecode(rawResponse.body);
+  BaseResponse response;
 
-  return BaseResponse.fromJson(parsedResponse);
+  if (rawResponse.statusCode == 200) {
+    Map<String, dynamic> parsedResponse = jsonDecode(rawResponse.body);
+    response = BaseResponse.fromJson(parsedResponse);
+  } else {
+    try {
+      Map<String, dynamic> parsedResponse = jsonDecode(rawResponse.body);
+      response = BaseResponse.fromJson(parsedResponse);
+    } catch (e) {
+      response = BaseResponse();
+    }
+  }
+
+  return response;
 }
